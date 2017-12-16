@@ -1,10 +1,14 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule} from '@angular/router'
+
+import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule} from '@angular/router';
+import { AgmCoreModule } from '@agm/core';
 //import {HeaderComponent} from './component/header/header.component';
 import {HomeComponent} from './component/home/home.component';
 import {AboutComponent} from './component/about/about.component';
-HomeComponent
+import { MapComponent } from './map/map.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -26,10 +30,14 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule,
+    CommonModule,  
+    FormsModule,  
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDTlwGkYrkmc0qvRfT52xUIh2SbrAOYXuU'
+    }), 
     RouterModule.forRoot(routes)
   ],
   exports:[RouterModule],
-  declarations: [HomeComponent,AboutComponent]
+  declarations: [HomeComponent,AboutComponent, MapComponent]
 })
 export class AppRoutingModule { }
