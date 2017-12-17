@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdddetailsComponent implements OnInit {
   studentId:any;
-  student:Student = {
+  student:any = {
           name : '',             
           english:'',
           math:'',
@@ -17,5 +17,17 @@ export class AdddetailsComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  postForm(studentform:any){    
+    //console.log(isEmpty(this.student));
+    if(this.studentId == 'blank'){
+        //this.studentdataService.addStudentData(this.student);
+    }else{
+        //this.studentdataService.updateStudentData(this.student, this.studentId);
+    }
+    
+    
+    //this.router.navigateByUrl('/about');
+}
 
 }

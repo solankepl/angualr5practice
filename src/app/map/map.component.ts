@@ -1,22 +1,22 @@
-import { Component, OnInit, AfterViewInit, NgModule  } from '@angular/core';
+import { Component, OnInit, AfterViewInit, NgModule } from '@angular/core';
 
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
-import { HttpClient} from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { BackendApiService } from '../services/backend-api.service';
 import { Observable } from 'rxjs/Rx';
-declare var google:any;
+declare var google: any;
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.less']
 })
-export class MapComponent implements OnInit, AfterViewInit  {
+export class MapComponent implements OnInit, AfterViewInit {
   title: string = 'Google Map';
-  zoom:number = 5;
+  zoom: number = 5;
   lat: number = 18.989089;
   lng: number = 75.760078;
-  markers : Array<any> = [];
-  styleArray:any[] = [
+  markers: Array<any> = [];
+  styleArray: any[] = [
     {
       "elementType": "geometry",
       "stylers": [
@@ -305,62 +305,62 @@ export class MapComponent implements OnInit, AfterViewInit  {
         }
       ]
     }
-];
-location: string;
-geocoder:any;
-  constructor(private _httpClient:HttpClient, private _backendApiService:BackendApiService, private _mapsAPILoader:MapsAPILoader) { }
+  ];
+  location: string;
+  geocoder: any;
+  constructor(private _httpClient: HttpClient, private _backendApiService: BackendApiService, private _mapsAPILoader: MapsAPILoader) { }
 
   ngOnInit() {
 
-   this._backendApiService.getMapData().subscribe(
-      (data:any[])=>{
+    this._backendApiService.getMapData().subscribe(
+      (data: any[]) => {
         this.markers = data;
         //console.log(data);
       },
-      error=>{
+      error => {
       });
-   //console.log(this._backendApiService.getMapData());
+    //console.log(this._backendApiService.getMapData());
   }
 
-  ngAfterViewInit(){   
-      this._mapsAPILoader.load().then(() => {
-          //console.log('google script loaded');
-          this.geocoder = new google.maps.Geocoder();
-      });
+  ngAfterViewInit() {
+    this._mapsAPILoader.load().then(() => {
+      //console.log('google script loaded');
+      this.geocoder = new google.maps.Geocoder();
+    });
   }
 
-  findLocation(): void {    
+  findLocation(): void {
     this.geocodeAddress(this.location);
-} 
+  }
 
-clickedMarker(label: string, index: number) {
+  clickedMarker(label: string, index: number) {
     console.log(`clicked the marker: ${label || index}`)
-}
+  }
 
-geocodeAddress(address) { 
+  geocodeAddress(address) {
     var _self = this;
-    this.geocoder.geocode({'address': address}, function(results, status) {
+    this.geocoder.geocode({ 'address': address }, function (results, status) {
       if (status === 'OK') {
         var location = results[0].geometry.location;
         var temp = {
-            "city": address,
-            "lat": location.lat(),
-            "lng": location.lng()    
+          "city": address,
+          "lat": location.lat(),
+          "lng": location.lng()
         }
-          //console.log(_self.markers);
-          _self.lat = location.lat();
-          _self.lng = location.lng();
-          _self.markers.push(temp);            
+        //console.log(_self.markers);
+        _self.lat = location.lat();
+        _self.lng = location.lng();
+        _self.markers.push(temp);
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
       }
     });
-}
+  }
 
 }
 
-interface marker{
-  city:string,
-  lat:number,
+interface marker {
+  city: string,
+  lat: number,
   lng: number
 }
