@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule} from '@angular/router';
@@ -40,8 +40,9 @@ const routes: Routes = [
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDTlwGkYrkmc0qvRfT52xUIh2SbrAOYXuU'
     }), 
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, { useHash: true })
   ],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   exports:[RouterModule],
   declarations: [HomeComponent,AboutComponent, MapComponent, AdddetailsComponent]
 })

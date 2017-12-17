@@ -2,6 +2,14 @@ https://github.com/Ismaestro/angular5-example-app
 
 my-json-server.typicode.com // to create dummy json file
 
+//------------------- refresh page issue resolve  by using below method 
+add app.module file 
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
+RouterModule.forRoot(routes, { useHash: true })
+providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+
+
+npm i -g angular-cli-ghpages
 ng g newproject name@less
 ng g component componetname
 ng g service servicename 
