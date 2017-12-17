@@ -8,6 +8,7 @@ import { AgmCoreModule } from '@agm/core';
 import {HomeComponent} from './component/home/home.component';
 import {AboutComponent} from './component/about/about.component';
 import { MapComponent } from './map/map.component';
+import { AdddetailsComponent } from './adddetails/adddetails.component';
 
 const routes: Routes = [
   {
@@ -21,7 +22,11 @@ const routes: Routes = [
    {
     path: 'about',
     component: AboutComponent
-  },
+  },  
+  {
+   path: 'adddetails',
+   component: AdddetailsComponent
+ },
   {
     path: '**', 
     component: HomeComponent
@@ -38,6 +43,6 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
   exports:[RouterModule],
-  declarations: [HomeComponent,AboutComponent, MapComponent]
+  declarations: [HomeComponent,AboutComponent, MapComponent, AdddetailsComponent]
 })
 export class AppRoutingModule { }

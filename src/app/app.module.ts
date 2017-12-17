@@ -12,6 +12,7 @@ import { FooterComponent } from './component/footer/footer.component';
 import { BackendApiService } from './services/backend-api.service';
 
 
+
 //import { HomeComponent } from './component/home/home.component';
 //import { AboutComponent } from './component/about/about.component';
 
