@@ -329,7 +329,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     });
   }
 
-  findLocation(): void {
+  findLocation(e): void {
     this.geocodeAddress(this.location);
   }
 
