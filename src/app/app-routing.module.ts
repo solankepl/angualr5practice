@@ -4,11 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule} from '@angular/router';
 import { AgmCoreModule } from '@agm/core';
-//import {HeaderComponent} from './component/header/header.component';
+
 import {HomeComponent} from './component/home/home.component';
 import {AboutComponent} from './component/about/about.component';
 import { MapComponent } from './map/map.component';
 import { AdddetailsComponent } from './adddetails/adddetails.component';
+import { StudentlistComponent } from './studentlist/studentlist.component';
+import { StudentdataService } from './services/studentdata.service';
 
 const routes: Routes = [
   {
@@ -26,7 +28,14 @@ const routes: Routes = [
   {
    path: 'adddetails',
    component: AdddetailsComponent
- },
+ }, 
+ {
+  path: 'studentlist',
+  component: StudentlistComponent,
+  resolve: {
+    myData: StudentdataService
+  }
+},
   {
     path: '**', 
     component: HomeComponent
@@ -44,6 +53,6 @@ const routes: Routes = [
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   exports:[RouterModule],
-  declarations: [HomeComponent,AboutComponent, MapComponent, AdddetailsComponent]
+  declarations: [HomeComponent, AboutComponent, MapComponent, AdddetailsComponent, StudentlistComponent]
 })
 export class AppRoutingModule { }

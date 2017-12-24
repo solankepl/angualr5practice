@@ -1,4 +1,4 @@
-<form novalidate #studentform="ngForm" (ngSubmit)="postForm(studentform.value)">
+<form novalidate #studentform="ngForm" (ngSubmit)="submitForm(studentform.value)">
   <div class="form-group" [ngClass]="{'has-error':!student.name.valid}">
       <label for="formGroupExampleInput">Enter Name</label>
       <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="student.name" required>

@@ -1,0 +1,133 @@
+Host url : https://cranky-carson-39bac9.netlify.com/#/home
+https://github.com/Ismaestro/angular5-example-app
+
+my-json-server.typicode.com // to create dummy json file
+https://www.sitepoint.com/angular-rxjs-create-api-service-rest-backend/
+npm install json-server --save
+npm install -g json-server
+json-server --watch db.json
+
+//=========================== buid command
+ng build --prod --aot=false
+
+//================== NgForOf with <ng-template>  =====
+https://www.concretepage.com/angular-2/angular-4-ngfor-example
+
+//------------------- refresh page issue resolve  by using below method 
+add app.module file 
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
+RouterModule.forRoot(routes, { useHash: true })
+providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+
+
+npm i -g angular-cli-ghpages
+ng g newproject name@less
+ng g component componetname
+ng g service servicename 
+/-----
+creatre new google map 
+	npm install @agm/core --save
+	add below code in appmodule.s file
+	import { AgmCoreModule } from '@agm/core';
+  	
+    	AgmCoreModule.forRoot({
+      		apiKey: 'YOUR_KEY'
+   	 })
+
+create new map componet 
+ng g component map
+
+<agm-map [latitude]="lat" [longitude]="lng">
+  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+</agm-map>
+
+export class AppComponent {
+  title: string = 'My first AGM project';
+  lat: number = 51.678418;
+  lng: number = 7.809007;
+}
+
+https://www.metaltoad.com/blog/angular-5-making-api-calls-httpclient-service // helap how to create service
+
+// Uses Observable.forkJoin() to run multiple concurrent http.get() requests.
++    // The entire operation will result in an error state if any single request fails.
++    getBooksAndMovies() {
++        return Observable.forkJoin(
++        this.http.get('/api/books'),
++        this.http.get('/api/movies')
++        );
+
+Create map service file 
+ng g s services/backendApi --module=app.module
+
+add below code in app.module.ts file
+import { HttpClientModule } from '@angular/common/http'
+imports: [
+    HttpClientModule 
+  ],
+add below code where you want to load service 
+import { HttpClient} from '@angular/common/http'
+
+constructor(private _httpClient:HttpClient, private _backendApiService:BackendApiService) { }
+this._backendApiService.getMapData().subscribe(
+      (data:any[])=>{
+        markers = data;
+        //console.log(data);
+      },
+      error=>{
+      });
+///-------------------------  google map end--------------------
+
+
+///========== create on common service for student data =============================
+
+//======== How load ther service befor componet load ================================
+add below code in service file 
+import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
+resolve (route: ActivatedRouteSnapshot): Observable<any> {
+    return Observable.from(this._backendApiService.getStudetMarkData());
+  }
+
+add the bewlo code app.routemodule file
+{
+  path: 'studentlist',
+  component: StudentlistComponent,
+  resolve: {
+    myData: StudentdataService
+  }
+},
+
+//========================= post data rest api ======
+aad the code backend-api ts file
+addStudetMarkData (newlist){   
+    return this._http.post('http://localhost:3000/student', newlist)
+  }
+call the below function
+ addStudentMarkData(obj):void{
+    this._backendApiService.addStudetMarkData(obj).subscribe(
+      (data: any[]) => {        
+       console.log("send");       
+      },
+      error => {
+      });
+  }
+///================================== angular-4-data-table-bootstrap-4 
+npm install angular-4-data-table-bootstrap-4 --save
+
+app.module add below code
+import { DataTableModule } from 'angular-4-data-table-bootstrap-4';
+
+//=================== font-awesome install ----------
+npm install --save font-awesome angular-font-awesome
+<fa name="cog" animation="spin"></fa>
+
+ Angular CLI,  add style path
+"styles": [
+    "styles.css",
+    "../node_modules/font-awesome/css/font-awesome.css"
+],
+
+
+
+
+

@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, NgModule } from '@angular/core';
 
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
 import { BackendApiService } from '../services/backend-api.service';
 import { Observable } from 'rxjs/Rx';
 declare var google: any;

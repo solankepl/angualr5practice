@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import{ Student } from '../services/student';
+import{ StudentdataService } from '../services/studentdata.service';
 @Component({
   selector: 'app-adddetails',
   templateUrl: './adddetails.component.html',
@@ -7,24 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdddetailsComponent implements OnInit {
   studentId:any;
-  student:any = {
+  student:Student  = {
           name : '',             
-          english:'',
-          math:'',
-          hindi:''
+          english:0,
+          math:0,
+          hindi:0
 } 
-  constructor() { }
+  constructor(private _studentdataService: StudentdataService) { }
 
   ngOnInit() {
   }
 
-  postForm(studentform:any){    
+  submitForm(studentform:Student){    
     //console.log(isEmpty(this.student));
-    if(this.studentId == 'blank'){
-        //this.studentdataService.addStudentData(this.student);
-    }else{
-        //this.studentdataService.updateStudentData(this.student, this.studentId);
-    }
+    //if(this.studentId == 'blank'){
+        this._studentdataService.addStudentMarkData(this.student);
+    //}else{
+        //this._studentdataService.updateStudentData(this.student, this.studentId);
+   // }
+
+    
     
     
     //this.router.navigateByUrl('/about');
