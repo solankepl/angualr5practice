@@ -26,9 +26,16 @@ export class BackendApiService {
   }
   
   addStudetMarkData (newlist){ 
-    return this._http.post(this.base_url + 'student', newlist)
+    return this._http.post(this.base_url + 'student', newlist);
+  }
+
+  deleteStudetMarkData (id){ 
+    return this._http.delete(this.base_url + 'student/'+id);
+    //return this._http.delete(this.base_url + 'student', {params: {id: id}});
   }
  
+
+  
 
 
 }

@@ -22,30 +22,51 @@ export class StudentdataService {
 
   callApiStudentData(){
     this._backendApiService.getStudetMarkData().subscribe(
-      (data: any[]) => {        
-          this.studentList = data;        
+      (data: any[]) => {
+          this.studentList = data;                 
       },
       error => {
       });
   }
 
   getStudentData():Student[]{
+      this.callApiStudentData(); 
       return this.studentList;
   }
 
 
-  addStudentRecord(obj):void{
+  addStudentRecord(obj):void{ 
+    obj = this.setStudentID(obj)   
     this.studentList.push(obj);
     this._backendApiService.addStudetMarkData(obj).subscribe(
       (data: any[]) => {        
-       console.log("send");       
+       console.log("send");  
+       this.callApiStudentData();      
       },
       error => {
       });
   }
 
-  deleteStudentRecord(obj):void{
-    this.studentList.push(obj);
+  setStudentID(obj):any{
+    let curId:any = this.studentList[this.studentList.length-1];
+    if(typeof curId === "undefined"){
+      obj.id = 1;
+    } else{
+      obj.id = curId.id + 1
+    }
+    return obj;
+  }
+
+  deleteStudentRecord(id):void{
+    console.log(id);
+    this.studentList.splice(id, 1);  
+    this._backendApiService.deleteStudetMarkData(id).subscribe(
+      (data: any[]) => {    
+        console.log(data);
+      },
+      error => {
+      });
+    //this.studentList.splice(id, 1);
   //   this._backendApiService.addStudetMarkData(obj).subscribe(
   //     (data: any[]) => {        
   //      console.log("send");       

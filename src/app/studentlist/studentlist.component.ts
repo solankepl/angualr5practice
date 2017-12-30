@@ -12,18 +12,21 @@ import{ StudentdataService } from '../services/studentdata.service';
 export class StudentlistComponent implements OnInit {
   studentList:Student[] =  new Array<Student>();
   constructor(private _studentdataService:StudentdataService) { 
-    this._studentdataService.callApiStudentData();
-    //this.studentList = curData;   
-    //this.studentList.push(curData);
+    this._studentdataService.callApiStudentData();  
   }
 
   ngOnInit() {
+    this.getStudentRecord()
+  }
+
+  getStudentRecord() {
     let curData = this._studentdataService.getStudentData();
     this.studentList = curData;   
   }
 
   deleteRecord(id) {
-      console.log(id);
+      this.studentList.splice(id, 1);
+      this._studentdataService.deleteStudentRecord(id);
   }
 
 }

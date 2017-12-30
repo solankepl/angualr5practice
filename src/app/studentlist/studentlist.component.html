@@ -16,13 +16,13 @@
     </thead>
     <tbody>
       <tr *ngFor="let student of studentList; let i = index;"> 
-        <th>{{i+1}}</th>
+        <th>{{student.id}}</th>
         <td>{{student.name | titlecase}}</td>
         <td>{{student.english}}</td>
         <td>{{student.math}}</td>
         <td>{{student.hindi}}</td>  
         <td> <i class="fa fa-pencil -card pencil-icon" ></i></td>   
-        <td> <i class="fa fa-trash-o trash-o-icon" (click)="deleteRecord(i);"></i></td>        
+        <td> <i class="fa fa-trash-o trash-o-icon" (click)="deleteRecord(student.id);"></i></td>        
       </tr>
      
     </tbody>
