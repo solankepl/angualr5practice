@@ -46,12 +46,12 @@ export class StudentdataService {
 
   deleteStudentRecord(obj):void{
     this.studentList.push(obj);
-    this._backendApiService.addStudetMarkData(obj).subscribe(
-      (data: any[]) => {        
-       console.log("send");       
-      },
-      error => {
-      });
+  //   this._backendApiService.addStudetMarkData(obj).subscribe(
+  //     (data: any[]) => {        
+  //      console.log("send");       
+  //     },
+  //     error => {
+  //     });
   }
 
 }
