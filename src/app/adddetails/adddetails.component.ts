@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Routes, RouterModule, ActivatedRoute, Router  } from '@angular/router';
 import{ Student } from '../services/student';
 import{ StudentdataService } from '../services/studentdata.service';
 @Component({
@@ -14,7 +15,7 @@ export class AdddetailsComponent implements OnInit {
           math:0,
           hindi:0
 } 
-  constructor(private _studentdataService: StudentdataService) { }
+  constructor(private _studentdataService: StudentdataService, private _route: ActivatedRoute, private _router: Router) { }
 
   ngOnInit() {
   }
@@ -22,15 +23,12 @@ export class AdddetailsComponent implements OnInit {
   submitForm(studentform:Student){    
     //console.log(isEmpty(this.student));
     //if(this.studentId == 'blank'){
-        this._studentdataService.addStudentMarkData(this.student);
+        this._studentdataService.addStudentRecord(this.student);
     //}else{
         //this._studentdataService.updateStudentData(this.student, this.studentId);
    // }
-
-    
-    
-    
-    //this.router.navigateByUrl('/about');
+   this._router.navigate(["/", "studentlist"]);
+   //this._router.navigateByUrl[("/studentlist")];
 }
 
 }

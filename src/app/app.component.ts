@@ -7,6 +7,6 @@ import{ StudentdataService } from './services/studentdata.service';
 })
 export class AppComponent {
      constructor(private _studentdataService:StudentdataService){
-        this._studentdataService.callApimarkData();
+        this._studentdataService.callApiStudentData();
      };
 }

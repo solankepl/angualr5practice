@@ -7,6 +7,15 @@ npm install json-server --save
 npm install -g json-server
 json-server --watch db.json
 
+var root = 'https://my-json-server.typicode.com/solankepl/dummyapi/student';
+
+$.ajax({
+  url: root + '/posts/1',
+  method: 'GET'
+}).then(function(data) {
+  console.log(data);
+});
+
 //=========================== How to upgrade Angular CLI to the latest version
 npm uninstall -g angular-cli
 npm cache clean

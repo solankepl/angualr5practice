@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/Rx';
 export class StudentdataService {
   studentList:Student[] =  new Array<Student>();
   constructor(private _httpClient: HttpClient, private _backendApiService: BackendApiService,) { 
-     //this.callApimarkData();  
+     this.callApiStudentData();  
      //let p1 = new Student("Pavan Solanke",77,70,50);
     
      //this.studentList.push(p1);
@@ -20,21 +20,32 @@ export class StudentdataService {
     return Observable.from(this._backendApiService.getStudetMarkData());
   }
 
-  callApimarkData(){
+  callApiStudentData(){
     this._backendApiService.getStudetMarkData().subscribe(
       (data: any[]) => {        
-        this.studentList = data;        
+          this.studentList = data;        
       },
       error => {
       });
   }
 
-  getMarkData():Student[]{
+  getStudentData():Student[]{
       return this.studentList;
   }
 
 
-  addStudentMarkData(obj):void{
+  addStudentRecord(obj):void{
+    this.studentList.push(obj);
+    this._backendApiService.addStudetMarkData(obj).subscribe(
+      (data: any[]) => {        
+       console.log("send");       
+      },
+      error => {
+      });
+  }
+
+  deleteStudentRecord(obj):void{
+    this.studentList.push(obj);
     this._backendApiService.addStudetMarkData(obj).subscribe(
       (data: any[]) => {        
        console.log("send");       

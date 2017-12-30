@@ -10,15 +10,19 @@
         <th>ENGLISH</th>
         <th>HINDI</th>
         <th>MATH </th>
+        <th>Edit </th>
+        <th>Delete </th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let student of studentList; let i = index;"> 
-        <th>{{student.id}}</th>
+        <th>{{i+1}}</th>
         <td>{{student.name | titlecase}}</td>
         <td>{{student.english}}</td>
         <td>{{student.math}}</td>
-        <td>{{student.hindi}}</td>       
+        <td>{{student.hindi}}</td>  
+        <td> <i class="fa fa-pencil -card pencil-icon" ></i></td>   
+        <td> <i class="fa fa-trash-o trash-o-icon" (click)="deleteRecord(i);"></i></td>        
       </tr>
      
     </tbody>

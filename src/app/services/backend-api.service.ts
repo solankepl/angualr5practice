@@ -21,12 +21,11 @@ export class BackendApiService {
      return this._http.get('../../assets/data/mapdata.json');
   }
 
-  getStudetMarkData (){
+  getStudetMarkData(){
     return this._http.get(this.base_url + 'student');    
   }
   
-  addStudetMarkData (newlist){   
-    console.log(newlist);
+  addStudetMarkData (newlist){ 
     return this._http.post(this.base_url + 'student', newlist)
   }
  
