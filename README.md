@@ -1,2 +1,2 @@
 angualr 5 demo for learing purpose
-Site url : https://cranky-carson-39bac9.netlify.com/#/home
+Site url : https://vigilant-shirley-b1a996.netlify.com/#/home
